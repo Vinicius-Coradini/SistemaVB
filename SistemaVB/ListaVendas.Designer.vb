@@ -1,9 +1,11 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports System.Data.SqlClient
+
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ListaVendas
     Inherits System.Windows.Forms.Form
 
     'Descartar substituições de formulário para limpar a lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,14 +22,16 @@ Partial Class ListaVendas
     'OBSERVAÇÃO: o procedimento a seguir é exigido pelo Windows Form Designer
     'Pode ser modificado usando o Windows Form Designer.  
     'Não o modifique usando o editor de códigos.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.dg = New System.Windows.Forms.DataGridView()
-        Me.rbCPF = New System.Windows.Forms.RadioButton()
-        Me.rbNome = New System.Windows.Forms.RadioButton()
+        Me.rbFuncionario = New System.Windows.Forms.RadioButton()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.rbData = New System.Windows.Forms.RadioButton()
         Me.cbCliente = New System.Windows.Forms.ComboBox()
+        Me.dt = New System.Windows.Forms.DateTimePicker()
+        Me.cbFuncionario = New System.Windows.Forms.ComboBox()
+        Me.rbCliente = New System.Windows.Forms.RadioButton()
         CType(Me.dg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -46,29 +50,17 @@ Partial Class ListaVendas
         Me.dg.Size = New System.Drawing.Size(990, 257)
         Me.dg.TabIndex = 97
         '
-        'rbCPF
+        'rbFuncionario
         '
-        Me.rbCPF.AutoSize = True
-        Me.rbCPF.Location = New System.Drawing.Point(653, 24)
-        Me.rbCPF.Margin = New System.Windows.Forms.Padding(4)
-        Me.rbCPF.Name = "rbCPF"
-        Me.rbCPF.Size = New System.Drawing.Size(98, 20)
-        Me.rbCPF.TabIndex = 104
-        Me.rbCPF.TabStop = True
-        Me.rbCPF.Text = "Funcionario"
-        Me.rbCPF.UseVisualStyleBackColor = True
-        '
-        'rbNome
-        '
-        Me.rbNome.AutoSize = True
-        Me.rbNome.Location = New System.Drawing.Point(562, 24)
-        Me.rbNome.Margin = New System.Windows.Forms.Padding(4)
-        Me.rbNome.Name = "rbNome"
-        Me.rbNome.Size = New System.Drawing.Size(69, 20)
-        Me.rbNome.TabIndex = 103
-        Me.rbNome.TabStop = True
-        Me.rbNome.Text = "Cliente"
-        Me.rbNome.UseVisualStyleBackColor = True
+        Me.rbFuncionario.AutoSize = True
+        Me.rbFuncionario.Location = New System.Drawing.Point(653, 24)
+        Me.rbFuncionario.Margin = New System.Windows.Forms.Padding(4)
+        Me.rbFuncionario.Name = "rbFuncionario"
+        Me.rbFuncionario.Size = New System.Drawing.Size(98, 20)
+        Me.rbFuncionario.TabIndex = 104
+        Me.rbFuncionario.TabStop = True
+        Me.rbFuncionario.Text = "Funcionario"
+        Me.rbFuncionario.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -80,17 +72,17 @@ Partial Class ListaVendas
         Me.Label2.TabIndex = 102
         Me.Label2.Text = "Buscar:"
         '
-        'RadioButton1
+        'rbData
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(766, 25)
-        Me.RadioButton1.Margin = New System.Windows.Forms.Padding(4)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(57, 20)
-        Me.RadioButton1.TabIndex = 106
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Data"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.rbData.AutoSize = True
+        Me.rbData.Location = New System.Drawing.Point(766, 25)
+        Me.rbData.Margin = New System.Windows.Forms.Padding(4)
+        Me.rbData.Name = "rbData"
+        Me.rbData.Size = New System.Drawing.Size(57, 20)
+        Me.rbData.TabIndex = 106
+        Me.rbData.TabStop = True
+        Me.rbData.Text = "Data"
+        Me.rbData.UseVisualStyleBackColor = True
         '
         'cbCliente
         '
@@ -101,16 +93,49 @@ Partial Class ListaVendas
         Me.cbCliente.Size = New System.Drawing.Size(171, 24)
         Me.cbCliente.TabIndex = 107
         '
+        'dt
+        '
+        Me.dt.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dt.Location = New System.Drawing.Point(842, 27)
+        Me.dt.Name = "dt"
+        Me.dt.Size = New System.Drawing.Size(171, 22)
+        Me.dt.TabIndex = 108
+        Me.dt.Visible = False
+        '
+        'cbFuncionario
+        '
+        Me.cbFuncionario.FormattingEnabled = True
+        Me.cbFuncionario.Location = New System.Drawing.Point(842, 24)
+        Me.cbFuncionario.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbFuncionario.Name = "cbFuncionario"
+        Me.cbFuncionario.Size = New System.Drawing.Size(171, 24)
+        Me.cbFuncionario.TabIndex = 109
+        Me.cbFuncionario.Visible = False
+        '
+        'rbCliente
+        '
+        Me.rbCliente.AutoSize = True
+        Me.rbCliente.Location = New System.Drawing.Point(561, 25)
+        Me.rbCliente.Margin = New System.Windows.Forms.Padding(4)
+        Me.rbCliente.Name = "rbCliente"
+        Me.rbCliente.Size = New System.Drawing.Size(69, 20)
+        Me.rbCliente.TabIndex = 110
+        Me.rbCliente.TabStop = True
+        Me.rbCliente.Text = "Cliente"
+        Me.rbCliente.UseVisualStyleBackColor = True
+        '
         'ListaVendas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1040, 384)
+        Me.Controls.Add(Me.rbCliente)
+        Me.Controls.Add(Me.cbFuncionario)
+        Me.Controls.Add(Me.dt)
         Me.Controls.Add(Me.cbCliente)
-        Me.Controls.Add(Me.RadioButton1)
-        Me.Controls.Add(Me.rbCPF)
-        Me.Controls.Add(Me.rbNome)
+        Me.Controls.Add(Me.rbData)
+        Me.Controls.Add(Me.rbFuncionario)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.dg)
         Me.Name = "ListaVendas"
@@ -123,9 +148,73 @@ Partial Class ListaVendas
     End Sub
 
     Friend WithEvents dg As DataGridView
-    Friend WithEvents rbCPF As RadioButton
-    Friend WithEvents rbNome As RadioButton
+    Friend WithEvents rbFuncionario As RadioButton
     Friend WithEvents Label2 As Label
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents rbData As RadioButton
     Friend WithEvents cbCliente As ComboBox
+    Friend WithEvents dt As DateTimePicker
+    Friend WithEvents cbFuncionario As ComboBox
+    Friend WithEvents rbCliente As RadioButton
+
+    Private Sub rbCliente_CheckedChanged(sender As Object, e As EventArgs) Handles rbCliente.CheckedChanged
+        cbCliente.Text = ""
+        cbFuncionario.Text = ""
+
+        cbCliente.Visible = True
+        cbFuncionario.Visible = False
+        dt.Visible = False
+    End Sub
+
+    Private Sub rbFuncionario_CheckedChanged(sender As Object, e As EventArgs) Handles rbFuncionario.CheckedChanged
+        cbCliente.Text = ""
+        cbFuncionario.Text = ""
+
+        cbFuncionario.Visible = True
+        cbCliente.Visible = False
+        dt.Visible = False
+    End Sub
+
+    Private Sub rbData_CheckedChanged(sender As Object, e As EventArgs) Handles rbData.CheckedChanged
+        cbCliente.Text = ""
+        cbFuncionario.Text = ""
+
+        dt.Visible = True
+        cbCliente.Visible = False
+        cbFuncionario.Visible = False
+    End Sub
+
+    Private Sub ListaVendas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CarregarFuncionarios()
+        CarregarClientes()
+    End Sub
+
+    Private Sub CarregarFuncionarios()
+        Dim DA As New SqlDataAdapter
+        Dim DT As New DataTable
+
+        Try
+            DA = New SqlDataAdapter("SELECT * FROM funcionarios", con)
+            DA.Fill(DT)
+            cbFuncionario.DisplayMember = "nome"
+            cbFuncionario.ValueMember = "id_fun"
+            cbFuncionario.DataSource = DT
+        Catch ex As Exception
+            MessageBox.Show("Erro ao carregar funcionario")
+        End Try
+    End Sub
+    Private Sub CarregarClientes()
+        Dim DA As New SqlDataAdapter
+        Dim DT As New DataTable
+
+        Try
+            DA = New SqlDataAdapter("SELECT * FROM clientes", con)
+            DA.Fill(DT)
+            cbCliente.DisplayMember = "nome"
+            cbCliente.ValueMember = "id_cliente"
+            cbCliente.DataSource = DT
+        Catch ex As Exception
+            MessageBox.Show("Erro ao carregar cliente")
+        End Try
+    End Sub
+
 End Class

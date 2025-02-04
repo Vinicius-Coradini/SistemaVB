@@ -89,9 +89,7 @@
     <Compile Include="ListaVendas.Designer.vb">
       <DependentUpon>ListaVendas.vb</DependentUpon>
     </Compile>
-    <Compile Include="ListaVendas.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ListaVendas.vb" />
     <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>

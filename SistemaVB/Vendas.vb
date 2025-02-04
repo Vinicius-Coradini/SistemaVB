@@ -94,6 +94,7 @@ Public Class Vendas
             DA.Fill(DT)
             cbProduto.DisplayMember = "nome"
             cbProduto.ValueMember = "id_produto"
+            Debug.Print(cbProduto.SelectedValue)
             cbProduto.DataSource = DT
         Catch ex As Exception : MessageBox.Show(ex.Message)
         End Try
