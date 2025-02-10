@@ -186,6 +186,7 @@ Partial Class ListaVendas
     Private Sub ListaVendas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CarregarFuncionarios()
         CarregarClientes()
+        Listar()
     End Sub
 
     Private Sub CarregarFuncionarios()
@@ -217,4 +218,47 @@ Partial Class ListaVendas
         End Try
     End Sub
 
+    Private Sub FormatarDG()
+        dg.Columns(0).Visible = False
+
+
+        dg.Columns(1).HeaderText = "Nome"
+        dg.Columns(2).HeaderText = "Sexo"
+        dg.Columns(3).HeaderText = "CPF"
+        dg.Columns(4).HeaderText = "Endereço"
+        dg.Columns(5).HeaderText = "Telefone"
+        dg.Columns(6).HeaderText = "Email"
+
+        dg.Columns(7).HeaderText = "Data Cadastro"
+
+        dg.Columns(6).Width = 130
+
+
+    End Sub
+
+
+    Private Sub Listar()
+        Dim dt As New DataTable
+        Dim da As SqlDataAdapter
+        Dim cmd As SqlCommand
+
+        Try
+            abrir()
+            cmd = New SqlCommand("SELECT ven.id_vendas, ven.num_vendas, pro.nome, cli.nome, pro.valor, ven.quantidade, ven.valor, ven.funcionario, ven.data_venda, ven.id_produto, ven.id_cliente FROM vendas as ven INNER JOIN produtos as pro on ven.id_produto = pro.id_produto INNER JOIN clientes as cli on ven.id_cliente = cli.id_cliente where ven.data_venda = @data and ven.funcionario = @funcionario order by num_vendas desc", con)
+            cmd.Parameters.AddWithValue("@data", Now.Date())
+            cmd.Parameters.AddWithValue("@funcionario", usuarioNome)
+
+            da = New SqlDataAdapter(cmd)
+            da.Fill(dt)
+            dg.DataSource = dt
+
+
+            FormatarDG()
+
+        Catch ex As Exception
+            MessageBox.Show("Erro ao Listar" + ex.Message)
+            fechar()
+        End Try
+
+    End Sub
 End Class
